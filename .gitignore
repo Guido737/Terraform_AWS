@@ -1,0 +1,15 @@
+# Terraform garbage
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.*
+**/*.backup
+**/*.tfvars
+crash.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
