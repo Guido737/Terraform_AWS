@@ -1,4 +1,5 @@
 # Terraform garbage
+**/.terraform.lock.hcl
 **/.terraform/
 **/*.tfstate
 **/*.tfstate.*
