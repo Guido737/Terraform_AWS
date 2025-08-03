@@ -1,0 +1,31 @@
+name: Blue-Green Switch
+
+on:
+  workflow_dispatch:
+
+env:
+  AWS_REGION: eu-west-2
+  LISTENER_ARN: ${{ secrets.LISTENER_ARN }}
+  TG_GREEN_ARN: ${{ secrets.GREEN_TG_ARN }}
+  TG_BLUE_ARN: ${{ secrets.BLUE_TG_ARN }}
+
+jobs:
+  deploy:
+    name: Switch ALB to Green
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Switch ALB Listener to Green Target Group
+        run: |
+          aws elbv2 modify-listener \
+            --listener-arn "$LISTENER_ARN" \
+            --default-actions Type=forward,TargetGroupArn="$TG_GREEN_ARN"
+          
+          echo "ALB now forwarding to GREEN group."
