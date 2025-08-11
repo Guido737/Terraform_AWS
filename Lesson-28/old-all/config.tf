@@ -5,7 +5,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket = "creator-eversor-project-kgb-terraform-state"
-    key    = "globalvars/terraform.tfstate"
+    key    = "old-all/terraform.tfstate"
     region = "us-east-1"
   }
 }
