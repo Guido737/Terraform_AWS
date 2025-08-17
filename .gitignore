@@ -21,3 +21,10 @@ mygcp-creds
 
 # Bash Scripts
 *.sh
+
+
+# VSCode files
+*.vscode/
+
+# PyCharm files
+.idea/
